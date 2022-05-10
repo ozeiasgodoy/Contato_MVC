@@ -1,0 +1,83 @@
+﻿
+@model IEnumerable<GP_Contato.Models.Contato>
+
+
+@{
+    ViewData["Title"] = "Contato";
+}
+
+
+<h1>Contato</h1>
+<table>
+     @{ 
+
+         Contato contato = new GP_Contato.Models.Contato();
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="All" class="text-danger" ></div>
+
+                <div class="form-group">
+                    <label asp-for="@contato.Nome" class="control-label"></label>
+                    <input asp-for="@contato.Nome" class="form-control" required minlength="3" maxlength="100"   />
+                    <span asp-validation-for="@contato.Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@contato.Fone" class="control-label"></label>
+                    <input asp-for="@contato.Fone" class="form-control" required minlength="8" maxlength="8"  type="number"  />
+                    <span asp-validation-for="@contato.Fone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@contato.Celular" class="control-label"></label>
+                    <input asp-for="@contato.Celular" class="form-control" required minlength="9" maxlength="9"   type="number"  />
+                    <span asp-validation-for="@contato.Celular"  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+         }
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">  <input type="submit" value="Delete" class="btn btn-danger" /></a>
+                  
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
